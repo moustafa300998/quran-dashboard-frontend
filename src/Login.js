@@ -1,8 +1,11 @@
 import { useState } from "react";
 import axios from "axios";
 
+// ✅ تعريف اللينك الجديد هنا
+const API_URL = "https://moustafa-quran-api.onrender.com";
+
 function Login({ setToken }) {
-  const [name, setName] = useState(""); // 👈 جديد
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -13,7 +16,8 @@ function Login({ setToken }) {
       setLoading(true);
       setError("");
 
-      const res = await axios.post("http://localhost:5000/auth/login", {
+      // ✅ تم تغيير الرابط هنا
+      const res = await axios.post(`${API_URL}/auth/login`, {
         email,
         password,
       });
@@ -32,13 +36,15 @@ function Login({ setToken }) {
       setLoading(true);
       setError("");
 
-      await axios.post("http://localhost:5000/auth/register", {
-        name, // 👈 مهم جدًا
+      // ✅ تم تغيير الرابط هنا
+      await axios.post(`${API_URL}/auth/register`, {
+        name,
         email,
         password,
       });
 
-      const res = await axios.post("http://localhost:5000/auth/login", {
+      // ✅ تم تغيير الرابط هنا
+      const res = await axios.post(`${API_URL}/auth/login`, {
         email,
         password,
       });
@@ -57,7 +63,6 @@ function Login({ setToken }) {
       <div className="bg-white p-6 rounded-2xl shadow-lg w-80">
         <h2 className="text-xl font-bold mb-4 text-center">Welcome 👋</h2>
 
-        {/* 👇 NAME */}
         <input
           className="border p-2 rounded w-full mb-3"
           placeholder="Name"
